@@ -19,11 +19,14 @@
     background-color: $day-bg-color;
     font-size: $day-font-size;
 
-    transition: transform $day-transition-time;
+    transition:
+      transform $day-transition-time,
+      background-color $day-transition-time;
   }
 
   &__day:hover {
     cursor: pointer;
+
     background-color: $day-bg-color-hover;
 
     transform: translateY(-20px);
@@ -31,7 +34,7 @@
 
   @each $week-day, $week-days-left in $calendar-1st-row {
     &--start-day-#{$week-day} {
-      & :first-child {
+      & > :first-child {
         margin-left: $calendar-width - calendar-week-width(
             $day-size,
             $day-gap,
@@ -41,7 +44,7 @@
     }
   }
 
-  @for $i from 1 through ($days + 1) {
+  @for $i from 1 through $days {
     & > :nth-child(#{$i})::before {
       content: '#{$i}';
     }
